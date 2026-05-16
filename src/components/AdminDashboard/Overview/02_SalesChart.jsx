@@ -9,13 +9,13 @@ import {
 } from "recharts";
 
 const chartData = [
-  { label: "Mon", sales: 2100 },
-  { label: "Tue", sales: 2680 },
-  { label: "Wed", sales: 3240 },
-  { label: "Thu", sales: 3890 },
-  { label: "Fri", sales: 4520 },
-  { label: "Sat", sales: 5310 },
-  { label: "Sun", sales: 6240 },
+  { label: "Mon", sales: 980 },
+  { label: "Tue", sales: 1124.5 },
+  { label: "Wed", sales: 1060 },
+  { label: "Thu", sales: 1240 },
+  { label: "Fri", sales: 1340 },
+  { label: "Sat", sales: 1370 },
+  { label: "Sun", sales: 1510 },
 ];
 
 const SalesChart = () => {
@@ -71,7 +71,10 @@ const SalesChart = () => {
             <Tooltip
               cursor={{ stroke: "#c7d2fe", strokeWidth: 1 }}
               formatter={(value) => [
-                `THB ${Number(value).toLocaleString()}`,
+                `THB ${Number(value).toLocaleString("en-US", {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}`,
                 "Sales",
               ]}
               contentStyle={{

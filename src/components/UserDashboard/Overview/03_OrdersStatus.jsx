@@ -1,35 +1,14 @@
-const orders = [
-  {
-    product: "Golden Bloom Poster",
-    amount: "฿1,250",
-    status: "COMPLETED",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIEKy6y3lULpkEQmffQKqmPffJnQxl8O2RIg&s",
-  },
-  {
-    product: "Midnight Echo Canvas",
-    amount: "฿2,900",
-    status: "PROCESSING",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyPQL9QWpX0XxqUElYkger625NwpddEwCC1w&s",
-  },
-  {
-    product: "Clay Form Vase",
-    amount: "฿980",
-    status: "PENDING",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3RmDkiAyoth-ojPZzs4AP-yD3QmQC-TJAaw&s",
-  },
-];
+import { statusLabels } from "../../../data/dashboardOrders";
 
 const statusClasses = {
   COMPLETED: "bg-emerald-100 text-emerald-600",
-  PROCESSING: "bg-sky-100 text-sky-600",
-  PENDING: "bg-amber-100 text-amber-600",
-  CANCELLED: "bg-rose-100 text-rose-600",
+  PAYABLE: "bg-amber-100 text-amber-600",
+  RECEIVABLE: "bg-sky-100 text-sky-600",
 };
 
-const OrdersStatus = ({ onOpenOrders }) => {
+const OrdersStatus = ({ orders, onOpenOrders }) => {
+  const recentOrders = orders.slice(0, 3);
+
   return (
     <div>
       <div className="mb-5">
@@ -54,9 +33,9 @@ const OrdersStatus = ({ onOpenOrders }) => {
               </tr>
             </thead>
             <tbody>
-              {orders.map((order) => (
+              {recentOrders.map((order) => (
                 <tr
-                  key={`${order.product}-${order.status}`}
+                  key={order.id}
                   className="border-b border-gray-200 last:border-b-0"
                 >
                   <td className="py-4 pl-4 md:pl-8">
@@ -75,11 +54,11 @@ const OrdersStatus = ({ onOpenOrders }) => {
                     <span
                       className={`rounded-full px-3 py-1 text-xs font-semibold ${statusClasses[order.status]}`}
                     >
-                      {order.status}
+                      {statusLabels[order.status]}
                     </span>
                   </td>
                   <td className="py-4 pr-4 text-right text-sm font-semibold text-gray-900 md:pr-8">
-                    {order.amount}
+                    {order.price}
                   </td>
                 </tr>
               ))}

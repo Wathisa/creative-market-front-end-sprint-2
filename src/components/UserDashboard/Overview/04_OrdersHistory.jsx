@@ -1,25 +1,6 @@
-const orderHistory = [
-  {
-    product: "Sunset Weave Tote",
-    amount: "฿1,420",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIEKy6y3lULpkEQmffQKqmPffJnQxl8O2RIg&s",
-  },
-  {
-    product: "Moonrise Ceramic Mug",
-    amount: "฿650",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyPQL9QWpX0XxqUElYkger625NwpddEwCC1w&s",
-  },
-  {
-    product: "Floral Ink Print",
-    amount: "฿2,350",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3RmDkiAyoth-ojPZzs4AP-yD3QmQC-TJAaw&s",
-  },
-];
+const OrdersHistory = ({ orders, onOpenOrders }) => {
+  const historyOrders = orders.slice(3, 6);
 
-const OrdersHistory = ({ onOpenOrders }) => {
   return (
     <div>
       <div className="mb-5">
@@ -43,9 +24,9 @@ const OrdersHistory = ({ onOpenOrders }) => {
               </tr>
             </thead>
             <tbody>
-              {orderHistory.map((order) => (
+              {historyOrders.map((order) => (
                 <tr
-                  key={order.product}
+                  key={order.id}
                   className="border-b border-gray-200 last:border-b-0"
                 >
                   <td className="py-4 pl-4 md:pl-8">
@@ -61,7 +42,7 @@ const OrdersHistory = ({ onOpenOrders }) => {
                     </div>
                   </td>
                   <td className="py-4 pr-4 text-right text-sm font-semibold text-gray-900 md:pr-8">
-                    {order.amount}
+                    {order.price}
                   </td>
                 </tr>
               ))}
