@@ -17,7 +17,7 @@ const UserDashboard = () => {
         return <MyAddress />;
       case "overview":
       default:
-        return <Overview />;
+        return <Overview onOpenOrders={() => setActivePage("my-orders")} />;
     }
   };
 

@@ -1,11 +1,11 @@
 const statusClasses = {
   COMPLETED: "bg-emerald-100 text-emerald-600",
-  PROCESSING: "bg-sky-100 text-sky-600",
-  PENDING: "bg-amber-100 text-amber-600",
+  PAYABLE: "bg-sky-100 text-sky-600",
+  RECEIVABLE: "bg-amber-100 text-amber-600",
   CANCELLED: "bg-rose-100 text-rose-600",
 };
 
-const OrderCard = ({ order }) => {
+const OrderCard = ({ order, statusLabel }) => {
   return (
     <article className="flex flex-col gap-5 rounded-2xl bg-white p-5 md:flex-row md:items-center md:p-6">
       {/* เปลี่ยนจาก div ไล่สี มาเป็นรูปภาพ */}
@@ -47,7 +47,7 @@ const OrderCard = ({ order }) => {
           <span
             className={`mt-1 inline-flex rounded-full px-3 py-1 text-xs font-semibold ${statusClasses[order.status]}`}
           >
-            {order.status}
+            {statusLabel}
           </span>
         </div>
       </div>
