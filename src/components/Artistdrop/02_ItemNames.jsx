@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { IoChevronDown, IoCheckmark, IoClose } from "react-icons/io5";
 
 export default function ItemDetails() {
@@ -6,11 +6,11 @@ export default function ItemDetails() {
   // 1. ส่วนประกาศ State
   // ------------------------------------------------------------------
   // เปลี่ยนค่าเริ่มต้นให้เป็น Array ว่าง [] เพื่อรอรับข้อมูลจาก Database
-  const [collections, setCollections] = useState([]);
+  // const [collections, setCollections] = useState([]);
 
-  const [selectedCollection, setSelectedCollection] = useState("");
-  const [isCreatingNew, setIsCreatingNew] = useState(false);
-  const [newCollectionName, setNewCollectionName] = useState("");
+  // const [selectedCollection, setSelectedCollection] = useState("");
+  // const [isCreatingNew, setIsCreatingNew] = useState(false);
+  // const [newCollectionName, setNewCollectionName] = useState("");
 
   const [selectedCategory, setSelectedCategory] = useState("");
   const [quantity, setQuantity] = useState(1);
@@ -18,77 +18,77 @@ export default function ItemDetails() {
   // ------------------------------------------------------------------
   // 2. แทรก useEffect ตรงนี้: สำหรับดึงข้อมูลตอนเปิดหน้าเว็บ
   // ------------------------------------------------------------------
-  useEffect(() => {
-    const fetchCollections = async () => {
-      try {
-        // --- โค้ดในอนาคตเมื่อต่อ Backend (เช่น Supabase) ---
-        // const { data, error } = await supabase.from('collections').select('*');
-        // if (error) throw error;
-        // if (data) setCollections(data);
+  // useEffect(() => {
+  //   const fetchCollections = async () => {
+  //     try {
+  //       // --- โค้ดในอนาคตเมื่อต่อ Backend (เช่น Supabase) ---
+  //       // const { data, error } = await supabase.from('collections').select('*');
+  //       // if (error) throw error;
+  //       // if (data) setCollections(data);
 
-        // --- โค้ดจำลองสำหรับตอนนี้ (ใส่ข้อมูลปลอมเข้าไปก่อน) ---
-        setCollections([
-          { id: "1", name: "My First Collection" },
-          { id: "2", name: "Abstract Series" },
-        ]);
-      } catch (error) {
-        console.error("เกิดข้อผิดพลาดในการดึงข้อมูล:", error);
-      }
-    };
+  //       // --- โค้ดจำลองสำหรับตอนนี้ (ใส่ข้อมูลปลอมเข้าไปก่อน) ---
+  //       setCollections([
+  //         { id: "1", name: "My First Collection" },
+  //         { id: "2", name: "Abstract Series" },
+  //       ]);
+  //     } catch (error) {
+  //       console.error("เกิดข้อผิดพลาดในการดึงข้อมูล:", error);
+  //     }
+  //   };
 
-    fetchCollections();
-  }, []); // [] หมายถึงให้รันแค่ครั้งเดียวตอนโหลด Component เสร็จ
+  //   fetchCollections();
+  // }, []); // [] หมายถึงให้รันแค่ครั้งเดียวตอนโหลด Component เสร็จ
 
   // ------------------------------------------------------------------
   // 3. ส่วนฟังก์ชันจัดการการกระทำต่างๆ ของผู้ใช้
   // ------------------------------------------------------------------
-  const handleSelectChange = (e) => {
-    if (e.target.value === "CREATE_NEW") {
-      setIsCreatingNew(true);
-      setSelectedCollection("");
-    } else {
-      setSelectedCollection(e.target.value);
-    }
-  };
+  // const handleSelectChange = (e) => {
+  //   if (e.target.value === "CREATE_NEW") {
+  //     setIsCreatingNew(true);
+  //     setSelectedCollection("");
+  //   } else {
+  //     setSelectedCollection(e.target.value);
+  //   }
+  // };
 
   // เปลี่ยนฟังก์ชันเป็น async เพื่อรองรับการคุยกับ Database
-  const handleAddCollection = async () => {
-    if (newCollectionName.trim() === "") return;
+  // const handleAddCollection = async () => {
+  //   if (newCollectionName.trim() === "") return;
 
-    try {
-      // --- โค้ดในอนาคตเมื่อต่อ Backend ---
-      // const { data: newColFromDB, error } = await supabase
-      //   .from('collections')
-      //   .insert([{ name: newCollectionName.trim() }])
-      //   .select()
-      //   .single();
-      //
-      // if (error) throw error;
-      // setCollections([...collections, newColFromDB]);
-      // setSelectedCollection(newColFromDB.id);
+  //   try {
+  //     // --- โค้ดในอนาคตเมื่อต่อ Backend ---
+  //     // const { data: newColFromDB, error } = await supabase
+  //     //   .from('collections')
+  //     //   .insert([{ name: newCollectionName.trim() }])
+  //     //   .select()
+  //     //   .single();
+  //     //
+  //     // if (error) throw error;
+  //     // setCollections([...collections, newColFromDB]);
+  //     // setSelectedCollection(newColFromDB.id);
 
-      // --- โค้ดจำลองสำหรับตอนนี้ ---
-      const newCol = {
-        id: Date.now().toString(),
-        name: newCollectionName.trim(),
-      };
-      setCollections([...collections, newCol]);
-      setSelectedCollection(newCol.id);
+  //     // --- โค้ดจำลองสำหรับตอนนี้ ---
+  //     const newCol = {
+  //       id: Date.now().toString(),
+  //       name: newCollectionName.trim(),
+  //     };
+  //     setCollections([...collections, newCol]);
+  //     setSelectedCollection(newCol.id);
 
-      // เมื่อบันทึกเสร็จ ก็ปิดหน้าต่างสร้างใหม่
-      setIsCreatingNew(false);
-      setNewCollectionName("");
-    } catch (error) {
-      console.error("ไม่สามารถบันทึกข้อมูลได้:", error);
-      alert("เกิดข้อผิดพลาดในการสร้างคอลเลกชันใหม่");
-    }
-  };
+  //     // เมื่อบันทึกเสร็จ ก็ปิดหน้าต่างสร้างใหม่
+  //     setIsCreatingNew(false);
+  //     setNewCollectionName("");
+  //   } catch (error) {
+  //     console.error("ไม่สามารถบันทึกข้อมูลได้:", error);
+  //     alert("เกิดข้อผิดพลาดในการสร้างคอลเลกชันใหม่");
+  //   }
+  // };
 
-  const handleCancelCreate = () => {
-    setIsCreatingNew(false);
-    setNewCollectionName("");
-    setSelectedCollection("");
-  };
+  // const handleCancelCreate = () => {
+  //   setIsCreatingNew(false);
+  //   setNewCollectionName("");
+  //   setSelectedCollection("");
+  // };
 
   // ------------------------------------------------------------------
   // 4. ส่วนแสดงผล UI (return)
@@ -123,7 +123,7 @@ export default function ItemDetails() {
       </div>
 
       {/* 3. Collection */}
-      <div>
+      {/* <div>
         <label className="block text-base font-bold text-black mb-1">
           Collection
         </label>
@@ -177,7 +177,7 @@ export default function ItemDetails() {
             </button>
           </div>
         )}
-      </div>
+      </div> */}
       {/* 4. Category */}
       <div>
         <label className="block text-base font-bold text-black mb-1">
