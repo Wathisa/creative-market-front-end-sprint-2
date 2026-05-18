@@ -20,7 +20,7 @@ export default function CheckoutSummary({
 
     try {
       // 2. API: POST /orders - สร้างคำสั่งซื้อ
-      // ส่ง addressId และ paymentMethod ตามตาราง API ของคุณ
+      
       const orderRes = await fetch('/api/orders', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
