@@ -1,9 +1,10 @@
-import React from 'react';
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Complete() {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-[#F3EFFF] flex flex-col items-center  p-6">
-      
       <div className="text-center mb-30">
         <h1 className="text-3xl font-bold mb-3 text-[#393276]">Complete</h1>
         <div className="flex items-center justify-center gap-3 text-sm text-[#4C1D95]">
@@ -19,23 +20,31 @@ export default function Complete() {
 
       {/* กล่องข้อความ Complete สีขาว */}
       <div className="bg-white border border-gray-300 p-12 text-center max-w-md w-full space-y-6">
-       
         <div className="flex justify-center">
           <div className="w-16 h-16 bg-[#10B981] rounded-full flex items-center justify-center text-white text-3xl">
             ✓
           </div>
         </div>
-        
+
         <h2 className="text-3xl font-bold text-[#1E1B4B]">Complete</h2>
-        
+
         {/* ไอคอนรถบรรทุก */}
         <div className="flex justify-center">
-          <span className="material-icons text-5xl text-[#1E1B4B]">local_shipping</span>
+          <span className="material-icons text-5xl text-[#1E1B4B]">
+            local_shipping
+          </span>
         </div>
-        
-        <p className="text-sm text-purple-400">wait for artist shipping</p>
-      </div>
 
+        <p className="text-sm text-purple-400">wait for artist shipping</p>
+
+        <button
+          type="button"
+          onClick={() => navigate("/")} //
+          className="w-full bg-[#1E1B4B] text-white py-3 rounded-md font-bold text-sm hover:bg-[#312E81] transition-all shadow-md active:scale-95"
+        >
+          BACK TO GALLERY
+        </button>
+      </div>
     </div>
   );
 }
