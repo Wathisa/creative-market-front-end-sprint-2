@@ -5,7 +5,7 @@ import shibaImg from "../../assets/images/highlight-shiba.png";
 
 const Highlight = () => {
   return (
-    <section className="bg-white w-full">
+    <section className="hidden md:block bg-white w-full">
       <div className="max-w-7xl mx-auto w-auto px-7 grid grid-cols-1 py-6 md:grid-cols-2 gap-8  ">
         {/* ================= LEFT ================= */}
 
