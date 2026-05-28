@@ -43,10 +43,10 @@ const Highlight = () => {
           </div>
 
           {/* 4. Button */}
-          <button className="bg-black text-white px-8 py-5 rounde rounded-xl font-bold flex items-center justify-center gap-3 w-full hover:bg-gray-800 transition-all text-base tracking-widest cursor-pointer">
+          {/* <button className="bg-black text-white px-8 py-5 rounde rounded-xl font-bold flex items-center justify-center gap-3 w-full hover:bg-gray-800 transition-all text-base tracking-widest cursor-pointer">
             <span className="text-xl">VIEW ARTIST</span>
             <span className="text-xl leading-none">↗</span>
-          </button>
+          </button> */}
         </div>
 
         {/* ================= RIGHT ================= */}
