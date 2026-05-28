@@ -47,7 +47,30 @@ const Market = () => {
   };
 
   if (loading)
-    return <div className="text-white text-center py-20">Loading...</div>;
+    return (
+      <section className="relative w-full bg-[#111016] py-20 overflow-hidden font-['Anuphan',sans-serif]">
+        <div className="relative max-w-7xl mx-auto px-6 z-10 flex flex-col gap-6">
+          {/* Row 1 skeleton */}
+          <div className="flex flex-col md:flex-row gap-8 w-full h-87.5">
+            <div className="w-full md:w-1/2 h-full rounded-3xl bg-[#1a1a1a] animate-pulse" />
+            <div className="md:w-1/2 h-full flex flex-col justify-center gap-4">
+              <div className="h-16 w-3/4 rounded-xl bg-[#1a1a1a] animate-pulse" />
+              <div className="h-16 w-1/2 rounded-xl bg-[#1a1a1a] animate-pulse" />
+            </div>
+          </div>
+
+          {/* Row 2 skeleton */}
+          <div className="flex flex-col md:flex-row gap-6 w-full mt-6">
+            {[1, 2, 3].map((i) => (
+              <div
+                key={i}
+                className="flex-1 aspect-square rounded-3xl bg-[#1a1a1a] animate-pulse"
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+    );
 
   return (
     <section className="relative w-full bg-[#111016] py-20 overflow-hidden font-['Anuphan',sans-serif]">
