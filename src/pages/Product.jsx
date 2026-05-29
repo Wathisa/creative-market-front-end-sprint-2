@@ -3,7 +3,6 @@ import ProductGallery from "../components/Product/02_ProductGallery";
 import ProductInfo from "../components/Product/03_ProductInfo";
 import ArtistInfo from "../components/Product/04_ArtistInfo";
 import ProductPurchasePanel from "../components/Product/05_ProductPurchasePanel";
-import ProductShowcase from "../components/Product/06_ProductShowcase";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 // import { productSamples } from "../data/productSamples"; ไม่ใช้ข้อมูลจาก mock data แล้ว
@@ -131,8 +130,6 @@ const Product = () => {
             />
           </div>
         </div>
-
-        <ProductShowcase image={product.images[0]} />
       </section>
     </main>
   );
