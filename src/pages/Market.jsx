@@ -4,6 +4,7 @@ import ProductCard from "../components/Market/ProductCard";
 import MarketHeader from "../components/Market/MarketHeader";
 
 const Market = () => {
+  const [cartCount, setCartCount] = useState(0);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isFilterActive, setIsFilterActive] = useState(false);
@@ -35,6 +36,10 @@ const Market = () => {
 
   const handleCategoryChange = (newCategory) => {
     setSearchParams({ category: newCategory });
+  };
+
+  const handleAddToCart = () => {
+    setCartCount((prevCount) => prevCount + 1);
   };
 
   // ── Filter (ทำงานกับข้อมูลจริง) ──
@@ -91,6 +96,7 @@ const Market = () => {
                   product={product}
                   isLoggedIn={isLoggedIn} //only for testing
                   userRole={userRole} //only for testing
+                  onAddToCartSuccess={handleAddToCart}
                 />
               </Link>
             ))

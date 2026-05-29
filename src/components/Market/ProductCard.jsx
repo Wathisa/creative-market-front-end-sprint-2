@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const ProductCard = ({ product, isLoggedIn, userRole }) => {
+const ProductCard = ({ product, isLoggedIn, userRole, onAddToCartSuccess }) => {
   const [toast, setToast] = useState(null); // null | "success" | "error"
   const [adding, setAdding] = useState(false);
 
@@ -48,6 +48,10 @@ const ProductCard = ({ product, isLoggedIn, userRole }) => {
       });
       if (!res.ok) throw new Error();
       showToast("success");
+
+      if (onAddToCartSuccess) {
+        onAddToCartSuccess();
+      }
     } catch {
       showToast("error");
     } finally {

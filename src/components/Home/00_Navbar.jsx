@@ -15,33 +15,29 @@ const Navbar = () => {
   const apiBaseUrl = `${serverBaseUrl}/api`;
 
   useEffect(() => {
-    const fetchUserProfile = async () => {
-      // ถ้าไม่ได้ล็อกอินก็ไม่ต้องวิ่งไปเรียก API ให้เปลืองแรง Server จ้า
-      if (!isLoggedIn) return;
-
-      try {
-        // เพื่อนร่วมทีมสามารถระบุ URL API จริงตรงนี้ได้เลย (เช่นดึงข้อมูลผ่านคุกกี้ / Token)
-        const response = await fetch(`${apiBaseUrl}/users`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            // ถ้าในอนาคตเพื่อนใช้ระบบ Bearer Token ก็สามารถปลดคอมเมนต์ตรงนี้ได้เลยนะจ๊ะ
-            // "Authorization": `Bearer ${localStorage.getItem("token")}`
-          },
-        });
-
-        const data = await response.json();
-
-        if (data.success) {
-          // สมมติว่าหลังบ้านส่งมาในรูปแบบ { success: true, data: { username: "Chaiyawat" } }
-          setUser(data.data);
-        }
-      } catch (error) {
-        console.error("Error fetching user profile:", error);
-      }
-    };
-
-    fetchUserProfile();
+    // const fetchUserProfile = async () => {
+    //   // ถ้าไม่ได้ล็อกอินก็ไม่ต้องวิ่งไปเรียก API ให้เปลืองแรง Server จ้า
+    //   if (!isLoggedIn) return;
+    //   try {
+    //     // เพื่อนร่วมทีมสามารถระบุ URL API จริงตรงนี้ได้เลย (เช่นดึงข้อมูลผ่านคุกกี้ / Token)
+    //     const response = await fetch(`${apiBaseUrl}/users`, {
+    //       method: "GET",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //         // ถ้าในอนาคตเพื่อนใช้ระบบ Bearer Token ก็สามารถปลดคอมเมนต์ตรงนี้ได้เลยนะจ๊ะ
+    //         // "Authorization": `Bearer ${localStorage.getItem("token")}`
+    //       },
+    //     });
+    //     const data = await response.json();
+    //     if (data.success) {
+    //       // สมมติว่าหลังบ้านส่งมาในรูปแบบ { success: true, data: { username: "Chaiyawat" } }
+    //       setUser(data.data);
+    //     }
+    //   } catch (error) {
+    //     console.error("Error fetching user profile:", error);
+    //   }
+    // };
+    // fetchUserProfile();
   }, [isLoggedIn]); // ทำงานใหม่ทุกครั้งที่สถานะการล็อกอินเปลี่ยนไปจ้า
 
   // --- ฟังก์ชันสำหรับการล็อกเอาท์ (เตรียมไว้ให้เพื่อนร่วมทีมมาผูกต่อ) ---
