@@ -6,7 +6,8 @@ const Market = () => {
   const [loading, setLoading] = useState(true);
 
   // ดึงค่า URL จาก Vite Env
-  const serverBaseUrl = import.meta.env.VITE_API_URL || "http://localhost:7777";
+  const serverBaseUrl =
+    import.meta.env.VITE_SERVER_URL || "http://localhost:7777";
   const apiBaseUrl = `${serverBaseUrl}/api`;
   const imageBaseUrl = serverBaseUrl;
 

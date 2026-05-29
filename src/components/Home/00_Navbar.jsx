@@ -6,9 +6,30 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState("null"); // เก็บข้อมูลโปรไฟล์ผู้ใช้ (เช่นชื่อ, รูปภาพ)
 
-  const [isLoggedIn, setIsLoggedIn] = useState(true); // สถานะล็อกอิน
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // สถานะล็อกอิน
   const [userRole, setUserRole] = useState("visitor"); // บทบาท: "visitor", "user", "admin"
   const [cartCount, setCartCount] = useState(3); // จำนวนสินค้าในตะกร้า
+
+  // --- ฟังก์ชันสำหรับการล็อกเอาท์ (เตรียมไว้ให้เพื่อนร่วมทีมมาผูกต่อ) ---
+  const handleLogout = async () => {
+    try {
+      // 1. ถ้าเพื่อนใช้ Cookie: จะต้องเขียน fetch ไปที่หลังบ้านตรงนี้จ้า
+      // await fetch("/api/auth/logout", { method: "POST" });
+
+      // 2. ถ้าเพื่อนใช้ LocalStorage: ล้างข้อมูลฝั่งคลายเอนท์ตรงนี้ได้เลย
+      // localStorage.removeItem("token");
+
+      // 3. รีเซ็ต State ในแอปพลิเคชันกลับไปเป็นเริ่มต้น
+      setIsLoggedIn(false);
+      setUserRole("visitor");
+      setCartCount(0);
+      setIsOpen(false); // ปิดเมนูมือถือด้วยนะจ๊ะ
+
+      console.log("Logged out successfully! ❤️");
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
+  };
 
   // สแตนด์บายฟังก์ชันสำหรับ Fetch ข้อมูลผู้ใช้และตะกร้าเมื่อแอปโหลด
   /* useEffect(() => {
@@ -167,6 +188,14 @@ const Navbar = () => {
                 </svg>
               </div>
             </Link>
+
+            {/* ปุ่ม Logout สำหรับหน้าจอใหญ่: เพิ่มต่อท้ายตรงนี้เลยจ้า */}
+            <button
+              onClick={handleLogout}
+              className="text-red-400 hover:text-red-500 font-medium cursor-pointer transition-colors text-base border border-red-500/30 px-3 py-1 rounded-sm hover:bg-red-500/10"
+            >
+              Logout
+            </button>
           </div>
         )}
       </div>
@@ -313,6 +342,28 @@ const Navbar = () => {
                 </svg>
                 {userRole === "admin" ? "Admin Dashboard" : "My Dashboard"}
               </Link>
+
+              {/* ปุ่ม Logout สำหรับหน้าจอมือถือ: เพิ่มต่อท้ายด้านล่างสุดของกล่องนี้เลยจ้า */}
+              <button
+                onClick={handleLogout}
+                className="flex items-center gap-3 text-red-400 hover:text-red-500 py-3 transition-colors text-lg font-bold border-t border-gray-900 mt-2 cursor-pointer w-full text-left"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75"
+                  />
+                </svg>
+                Logout
+              </button>
             </div>
           )}
         </div>
